@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{%  load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Confirm Delete</div>
+        <div class="panel-body">
+            <form method="post">{% csrf_token %}
+                <p>Are you sure you want to delete appointment at {{ appointment.time }}?</p>
+                <input class="btn btn-primary" type="submit" value="Confirm" />
+                <a class="btn btn-primary" href="/appointments">Cancel<a/>
+            </form>
+        </div>
+    </div>
+{% endblock %}

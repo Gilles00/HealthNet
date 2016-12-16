@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Upcoming Appoinments</div>
+        <div class="panel-body">
+            {% if apps %}
+                <ul>
+                {%  for appointment in apps %}
+                    <li><a href="/appointments/{{ appointment.id }}/">{{ appointment.time }}</a></li>
+                {%  endfor %}
+                </ul>
+            {% else %}
+                <p>No appointments made.</p>
+            {% endif %}
+            {% buttons %}
+                <a href="/appointments/create" class="btn btn-primary">Create Appointment</a>
+            {% endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}

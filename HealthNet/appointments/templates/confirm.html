@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Availabilities</div>
+        <div class="panel-body">
+            <p>Make an appointment with {{ doctor }} at {{ time }} on {{ date }}?</p>
+            {% buttons %}
+                <a href="/appointments/redirect/{{ date.year }}/{{ date.month }}/{{ date.day }}/{{ time.hour }}/{{ time.minute }}/{{ doctor.id }}" class="btn btn-primary">Yes</a>
+                 <a href="/appointments" class="btn btn-primary">No</a>
+            {% endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}

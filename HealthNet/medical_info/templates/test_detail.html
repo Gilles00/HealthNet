@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Test Detail</div>
+        <div class="panel-body">
+           <ul>
+               <p><b>Test Type: </b> {{ test.name }}</p>
+               <p><b>Result: </b> {{ test.result }}</p>
+               <p><b>Date: </b> {{ test.date }}</p>
+               <p><b>Comment: </b> {{ test.comments }}</p>
+           </ul>
+            {% buttons %}
+                <a href="/medicalinfo/" class="btn btn-primary">Return</a>
+                {%  if doctor and test.is_pending %}
+                    <a href="release-test/" class="btn btn-default">Release</a>
+                {%  endif %}
+            {% endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}

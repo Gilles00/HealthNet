@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">ERROR</div>
+        <div class="panel-body">
+            <p>{{ error }}</p>
+            <a href="/appointments/" class="btn btn-default">Return</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

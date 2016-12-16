@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Upcoming Appoinments</div>
+        <div class="panel-body">
+            {% if appointment_list %}
+                <ul>
+                {%  for appointment in appointment_list %}
+                    <li><a href="/appointments/{{ appointment.id }}/">{{ appointment.time }}</a></li>
+                {%  endfor %}
+                </ul>
+            {% else %}
+                <p>No appointments made.</p>
+            {% endif %}
+            {% buttons %}
+                <a href="/appointments/create" class="btn btn-primary">Create Appointment</a>
+            {% endbuttons %}
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Calender</div>
+            <div class="panel-body">
+                <style>
+                    table {
+                        width: 100%;
+                    }
+                    td {
+                        width: 14%;
+                        text-align: center;
+                    }
+                    th {
+                        text-align: center;
+                    }
+                    h1 {
+                        text-align: center;
+                    }
+                </style>
+                <div>
+                    <h1>
+                        <a class="btn btn-default pull-left" href="/appointments/view/{{ lastmonth }}/{{ lastyear }}">Prev Month</a>
+                        <span>{{ month }} {{ markdate.year }}</span>
+                        <a class="btn btn-default pull-right" href="/appointments/view/{{ nextmonth }}/{{ nextyear }}">Next Month</a>
+                    </h1>
+                    <hr/>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Sunday</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for week in iter %}
+                        <tr>
+                            {% for date in week %}
+                                <td>
+                                    <div class="col-md-14">
+                                        <div class="panel panel-primary">
+                                            {% if date == today %}
+                                                <div class="panel-heading">TODAY</div>
+                                                <div class="panel-body">
+                                                    {% if appointment_list %}
+                                                        {%  for appointment in appointment_list %}
+                                                            {% if appointment.time.date == date %}
+                                                                <p style="text-align: center"><a style="text-decoration:none" href="/appointments/{{ appointment.id }}/">{{ appointment.time.time }}</a></p>
+                                                            {% endif %}
+                                                        {%  endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            {% else %}
+                                                <div class="panel-heading">{{ date.day }}</div>
+                                                <div class="panel-body">
+                                                    {% if appointment_list %}
+                                                        {%  for appointment in appointment_list %}
+                                                            {% if appointment.time.date == date %}
+                                                                <p style="text-align: center"><a style="text-decoration:none" href="/appointments/{{ appointment.id }}/">{{ appointment.time.time }}</a></p>
+                                                            {% endif %}
+                                                        {%  endfor %}
+                                                    {% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endblock %}

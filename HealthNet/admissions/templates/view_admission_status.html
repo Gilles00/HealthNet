@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Admission</div>
+        <div class="panel-body">
+            {% if patient.admitted_hospital %}
+                <p>{{ patient.user.first_name }} {{ patient.user.last_name }} is currently admitted to {{ patient.admitted_hospital }}</p>
+            {% else %}
+                <p>{{ patient.user.first_name }} {{ patient.user.last_name }} is not admitted to a hospital.
+            {% endif %}
+            {% if doctor %}
+                {% buttons %}
+                    {% if patient.admitted_hospital %}
+                        <a href="/admissions/discharge/{{ patient.id }}" class="btn btn-primary">Discharge</a>
+                    {%  else %}
+                        <a href="/admissions/admit/{{ patient.id }}" class="btn btn-primary">Admit</a>
+                    {% endif %}
+                    <a href="/admissions" class="btn btn-primary">Back</a>
+                {% endbuttons %}
+            {% elif nurse %}
+                {% buttons %}
+                    {%  if not patient.admitted_hospital %}
+                        <a href="/admissions/admit/{{ patient.id }}" class="btn btn-primary">Admit</a>
+                    {% endif %}
+                    <a href="/admissions" class="btn btn-primary">Back</a>
+                {% endbuttons %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

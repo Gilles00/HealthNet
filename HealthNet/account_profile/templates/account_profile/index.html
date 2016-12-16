@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Profile</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+            <dt>Username</dt> <dd>{{ request.user }}</dd>
+            <dt>Name</dt> <dd>{{ request.user.first_name }} {{ request.user.last_name }} </dd>
+            {% if patient %}
+                <dt>Date of birth</dt> <dd>{{ patient.dateOfBirth }}</dd>
+                <dt>Height</dt> <dd>{{ patient.height }}</dd>
+                <dt>Weight</dt> <dd>{{ patient.weight }}</dd>
+                <dt>Address</dt> <dd>{{ patient.address }}</dd>
+                <dt>Insurer</dt> <dd>{{ patient.insurer }}</dd>
+                {% buttons %}
+                    <a href="/profile/edit-patient/" class="btn btn-primary">Edit</a>
+                {% endbuttons %}
+            {% elif doctor %}
+                <dt>Specialty</dt> <dd>{{ doctor.specialty }}</dd>
+                <dt>Hospital</dt> <dd>{{ doctor.hospital.name }}</dd>
+                {% buttons %}
+                    <a href="/profile/edit-doctor/" class="btn btn-primary">Edit</a>
+                {% endbuttons %}
+            {% elif nurse %}
+                <dt>Hospital</dt> <dd>{{ nurse.hospital.name }}</dd>
+                {% buttons %}
+                    <a href="/profile/edit-nurse/" class="btn btn-primary">Edit</a>
+                {% endbuttons %}
+            {% endif %}
+            </dl>
+
+        </div>
+    </div>
+<div>
+{% endblock %} 
+

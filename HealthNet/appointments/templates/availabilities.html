@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Availabilities</div>
+        <div class="panel-body">
+            {% for doc in list %}
+                <p>Dr. {{ doc.user.first_name }} {{ doc.user.last_name }}</p>
+                <a href="/appointments/confirm/{{ date.year }}/{{ date.month }}/{{ date.day }}/{{ date.hour }}/{{ date.minute }}/{{ doc.id }}/" class="btn btn-primary">Make Appointment</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

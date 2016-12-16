@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Appointment Detail</div>
+        <div class="panel-body">
+           <ul>
+               <p><b>Time: </b> {{ appointment.time }}</p>
+               <p><b>Location: </b> {{ appointment.location }}</p>
+               <p><b>Patient: </b> {{ appointment.patient }}</p>
+               <p><b>Doctor: </b> {{ appointment.doctor }}</p>
+               {% if doctor %}
+                    {% buttons %}
+                        <a href="delete/" class="btn btn-default">Delete</a>
+                        <a href="doctor-edit/" class="btn btn-default">Reschedule</a>
+                    {% endbuttons %}
+               {% elif nurse %}
+                   {% buttons %}
+                        <a href="nurse-edit/" class="btn btn-default">Edit</a>
+                    {% endbuttons %}
+                {% else %}
+                   {% buttons %}
+                        <a href="delete/" class="btn btn-default">Delete</a>
+                        <a href="edit/" class="btn btn-default">Reschedule</a>
+                    {% endbuttons %}
+                {% endif %}
+           </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

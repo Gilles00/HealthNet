@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Message</div>
+        <div class="panel-body">
+            <p><b>{{ message.title }}</b></p>
+            <p>{{ message.message }}</p>
+            {% buttons %}
+                <a href="/messages/" class="btn btn-primary">Return</a>
+            {%  endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}

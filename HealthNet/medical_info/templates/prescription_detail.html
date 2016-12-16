@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Prescription Detail</div>
+        <div class="panel-body">
+           <ul>
+               <p><b>Prescription: </b> {{ rx.name }}</p>
+               <p><b>Dosage: </b> {{ rx.dosage_info }}</p>
+           </ul>
+            {% buttons %}
+                {% if doctor %}
+                    <a href="delete/" class="btn btn-primary">Delete</a>
+                {%  endif %}
+                <a href="/medicalinfo/" class="btn btn-default">Return</a>
+            {% endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Availability</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Available Doctors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for time, dl in context %}
+                        <tr>
+                            <td>{{ time }}</td>
+                            {% if not dl %}
+                                <td>
+                                    <p>No Availabilities</p>
+                                </td>
+                            {% else %}
+                                {% for d in dl %}
+                                    <td>
+                                        <a href="/appointments/available/{{ date.year }}/{{ date.month }}/{{ date.day }}/{{ time.hour }}/{{ time.minute }}/">Check Availabilities</a>
+                                    </td>
+                                {% endfor %}
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

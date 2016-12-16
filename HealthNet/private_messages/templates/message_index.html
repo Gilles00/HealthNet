@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Inbox</div>
+                    <div class="panel-body">
+                        {% if inbox %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>From</th>
+                                        <th>Time</th>
+                                        <th>Read</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for m in inbox %}
+                                        <tr>
+                                            <td><a href="view/{{ m.id }}">{{ m.title }}</a></td>
+                                            <td>{{ m.sender.last_name }}, {{ m.sender.first_name }}</td>
+                                            <td>{{ m.time }}</td>
+                                            {% if m.is_opened %}
+                                                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                                            {% else %}
+                                                <td><span class="glyphicon glyphicon-eye-close"></span></td>
+                                            {% endif %}
+                                        </tr>
+                                    {%  endfor %}
+                                </tbody>
+                            </table>
+                            <p><a href="inbox/">More...</a></p>
+                        {% else %}
+                            <p>No recieved messages.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Outbox</div>
+                    <div class="panel-body">
+                        {% if outbox %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>To</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for m in outbox %}
+                                        <tr>
+                                            <td><a href="view/{{ m.id }}">{{ m.title }}</a></td>
+                                            <td>{{ m.recipient.last_name }}, {{ m.recipient.first_name }}</td>
+                                            <td>{{ m.time }}</td>
+                                        </tr>
+                                    {%  endfor %}
+                                </tbody>
+                            </table>
+                            <p><a>More...</a></p>
+                        {% else %}
+                            <p>No sent messages.</p>
+                        {% endif %}
+                        {% buttons %}
+                            <a href="create/" class="btn btn-primary">Send Message</a>
+                        {% endbuttons %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

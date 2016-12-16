@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Admission</div>
+        <div class="panel-body">
+            <p>Discharge {{ patient.user.first_name }} {{ patient.user.last_name }} from {{ patient.admitted_hospital }}</p>
+            {% buttons %}
+                <a href="/admissions/discharge-redirect/{{ patient.id }}" class="btn btn-primary">Yes</a>
+                <a href="/admissions/" class="btn btn-primary">No</a>
+            {% endbuttons %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+</html>

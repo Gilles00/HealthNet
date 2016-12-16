@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Admission</div>
+        <div class="panel-body">
+            {% if patient.admitted_hospital %}
+                <p>You are currently admitted to {{ patient.admitted_hospital }}</p>
+            {% else %}
+                <p>You are not currently admitted to a hospital</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

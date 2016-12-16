@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Medical Info</div>
+                <div class="panel-body">
+                    <ul>
+                        <li>Height: {{ patient.height }}</li>
+                        <li>Weight: {{ patient.weight }}</li>
+                        {% if patient.admitted_hospital %}
+                            <li>Hospital: {{ patient.admitted_hospital }}</li>
+                        {% else %}
+                            <li>Hospital: Not Admitted</li>
+                        {% endif %}
+                    </ul>
+                    {% buttons %}
+                        <a href="medicalinfo/" class="btn btn-primary">Edit</a>
+                        <a href="/medicalinfo/transfer-patient/{{ patient.id }}" class="btn btn-primary">Transfer</a>
+                    {% endbuttons %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Tests</div>
+                <div class="panel-body">
+                    {% if testlist %}
+                        <ul>
+                            {%  for test in testlist %}
+                                <li><a href="/medicalinfo/tests/{{ test.id }}/">{{ test.name }}: {{ test.result }}</a></li>
+                            {%  endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No test issued.</p>
+                    {% endif %}
+                    {% if doctor %}
+                        <a href="add-test/" class="btn btn-primary">Add Test to Analyze</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Prescriptions</div>
+                <div class="panel-body">
+                    {% if rxlist %}
+                            <ul>
+                            {%  for rx in rxlist %}
+                                <li><a href="/medicalinfo/prescriptions/{{ rx.id }}/">{{ rx.name }}</a></li>
+                            {%  endfor %}
+                            </ul>
+                    {% else %}
+                        <p>No prescriptions.</p>
+                    {% endif %}
+                    {% if doctor %}
+                        <a href="/medicalinfo/add-prescription/{{ patient.id }}" class="btn btn-primary">Add Presciption</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+<div col-md-8 col-md-offset-2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Add Prescription</div>
+        <div class="panel-body">
+            <form action="" method="post"> {% csrf_token %}
+                {% bootstrap_form form %}
+                {% buttons %}
+                    <input class="btn btn-primary" type="submit" value="Submit"/>
+                    <a href="/medicalinfo/" class="btn btn-default">Cancel</a>
+                {% endbuttons %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

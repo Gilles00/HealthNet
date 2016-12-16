@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Medical Info</div>
+                <div class="panel-body">
+                    <ul>
+                        <li>Height: {{ patient.height }}</li>
+                        <li>Weight: {{ patient.weight }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Tests</div>
+                <div class="panel-body">
+                    <p>Tests</p>
+                    {% if testlist %}
+                        <ul>
+                        {%  for test in testlist %}
+                            <li><a href="/medicalinfo/tests/{{ test.id }}/">{{ test.name }}: {{ test.result }}</a></li>
+                        {%  endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No tests issued.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Prescriptions</div>
+                <div class="panel-body">
+                    {% if rxlist %}
+                    <ul>
+                    {%  for rx in rxlist %}
+                        <li><a href="/medicalinfo/prescriptions/{{ rx.id }}/">{{ rx.name }}</a></li>
+                    {%  endfor %}
+                    </ul>
+                {% else %}
+                        <p>No prescriptions.</p>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} 
