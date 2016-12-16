@@ -1,0 +1,10 @@
+Usernames:
+patient1
+patient2
+patient3
+doctor1
+doctor2
+nurse1
+
+Password for all accounts: 
+1234qwer
